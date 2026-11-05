@@ -1,0 +1,11 @@
+{
+  "name": "claude-skill-motion",
+  "owner": { "name": "Geraldki94" },
+  "plugins": [
+    {
+      "name": "motion-studio",
+      "source": "./",
+      "description": "Motion-Graphics-Videos per Code mit Claude: Setup, Prompt-Interview und Selbstprüfung."
+    }
+  ]
+}
