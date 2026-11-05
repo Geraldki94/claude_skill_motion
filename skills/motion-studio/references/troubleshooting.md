@@ -59,3 +59,15 @@ Codex über API-Kosten: abmelden (`codex logout`) und mit ChatGPT neu anmelden.
 - „The built-in image tool is not exposed in this session“: Codex aktualisieren
   (`npm i -g @openai/codex@latest`) und `codex features enable image_generation`.
 - Codex-Ausgabe oberhalb der Meldung lesen, dort steht meist der eigentliche Grund.
+
+**Cloud-Umgebung (claude.ai/code) mit eingeschränktem Netzwerk.**
+Dort sind nur freigegebene Domains erreichbar. Typische Sperren und was freigegeben
+werden muss (Umgebung → Edit → Network access → Allowed domains):
+- Bilder über ChatGPT/Codex: `auth.openai.com`, `chatgpt.com`, `api.openai.com`
+- Higgsfield-Ergebnisse herunterladen: die CDN-Domain aus der Ergebnis-URL
+  (z. B. `d8j0ntlcm91z4.cloudfront.net`, `cdn.higgsfield.ai`)
+- HyperFrames lädt GSAP standardmäßig von `cdn.jsdelivr.net`. Robuster: GSAP per
+  npm holen und lokal einbinden (`npm i gsap`, `gsap.min.js` nach `assets/`,
+  `<script src="assets/gsap.min.js">`).
+`codex login --device-auth` funktioniert ohne Browser auf der Maschine: Link und
+Code werden angezeigt, die Anmeldung passiert auf dem eigenen Gerät.
