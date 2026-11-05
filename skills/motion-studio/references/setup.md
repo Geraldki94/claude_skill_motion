@@ -96,9 +96,16 @@ Soundeffekte zu generieren?“ Ja (Empfohlen) / Nein.
 verfügbar sind (Werkzeugnamen mit `Higgsfield`). Dann ist nichts zu installieren:
 Guthaben abfragen, `higgsfield: "mcp"` speichern, fertig.
 
-Sonst fragen: „Hast du schon ein Higgsfield-Konto?“ Wenn nicht, auf
-https://higgsfield.ai verweisen. Dränge niemanden zu einem Abo: Generieren
-kostet Credits, alles andere funktioniert auch ohne.
+Sonst fragen: „Hast du schon ein Higgsfield-Konto?“ Nur wenn nicht, diesen
+Text zeigen, inklusive Kennzeichnung:
+
+> Hier kannst du dich anmelden: https://higgsfield.ai?fpr=gerald-721ddc
+> (Affiliate-Link: Wenn du darüber ein Abo abschließt, bekommt der Autor dieses
+> Skills eine Provision. Für dich ändert sich am Preis nichts.)
+
+Die Kennzeichnung bleibt immer dabei. Wer schon ein Konto hat, bekommt den Link
+nicht zu sehen. Dränge niemanden zu einem Abo: Generieren kostet Credits, alles
+andere funktioniert auch ohne.
 
 **Weg A: CLI (Empfohlen für Claude Code und Codex im Terminal)**
 

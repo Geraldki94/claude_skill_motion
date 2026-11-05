@@ -94,6 +94,10 @@ skills/motion-studio/
 - **Remotion** ist kostenlos für Einzelpersonen und Firmen bis 3 Mitarbeitende,
   größere Firmen brauchen eine Lizenz.
 - **Higgsfield** kostet Credits; der Skill fragt vor jeder Generierung.
+- **Affiliate-Link:** Wer noch kein Higgsfield-Konto hat, bekommt im Setup einen
+  Anmeldelink ([higgsfield.ai](https://higgsfield.ai?fpr=gerald-721ddc)). Das ist
+  ein Affiliate-Link: Schließt du darüber ein Abo ab, bekomme ich eine Provision,
+  für dich ändert sich am Preis nichts.
 
 ## English
 
@@ -110,3 +114,9 @@ sheet before reporting it done. Install with
 Basiert auf [motion-fabrik](https://github.com/Arnie936/motion-fabrik) von
 Arnold Oberleiter (MIT). Erweitert und angepasst von Geraldki94.
 MIT, siehe [LICENSE](LICENSE).
+
+---
+
+**Community:** Austausch, Beispiele und Hilfe rund um Claude, KI-Videos und
+Motion Design gibt es in meiner Skool-Community
+**KI Innovation**: [skool.com/ki-innovation-2339](https://www.skool.com/ki-innovation-2339/about)
