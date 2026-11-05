@@ -50,7 +50,7 @@ Du bist Motion Designer. Mach mit <Framework> ein <Länge> langes Video im Forma
 
 Ziel: <Ziel>. Zielgruppe: <wer schaut zu>.
 Look: <Branding / Stil / Webseite als Vorbild>. <Referenz und was daran gefällt>.
-Ton: <Stimme, Sprache> · <Musik> · <Soundeffekte>. <Higgsfield für Bilder/Video/Stimme, falls gewählt>.
+Ton: <Stimme, Sprache> · <Musik> · <Soundeffekte>. <Bilder über ChatGPT/Codex (gpt-image-2) bzw. Higgsfield, falls gewählt>. <Higgsfield für Clips/Stimme, falls gewählt>.
 
 Ziel erreicht, wenn <Kriterium>.
 

@@ -58,9 +58,13 @@ Danach eine neue Sitzung starten und „Motion Studio“ schreiben.
    **Tesseract** oder keins.
 2. **Higgsfield (optional).** Bilder, Clips, Stimmen, Musik und Soundeffekte
    generieren – über CLI oder MCP-Connector. Kosten werden vorher angezeigt.
-3. **Prompt bauen.** Kurzes Interview: Thema, Ziel, Länge, Format, Branding,
+3. **Bilder mit ChatGPT (optional).** Hast du ChatGPT Plus oder höher, erzeugt
+   der Skill Bilder über Codex mit deinem ChatGPT-Abo (gpt-image-2) – ohne
+   API-Key und ohne Higgsfield-Credits. Funktioniert in Codex direkt und in
+   Claude Code über das Skript `codex_image.sh`.
+4. **Prompt bauen.** Kurzes Interview: Thema, Ziel, Länge, Format, Branding,
    Referenz, Ton und – am wichtigsten – woran du erkennst, dass das Video gut ist.
-4. **Bauen & prüfen.** Nach deinem OK baut der Agent das Video, rendert ein
+5. **Bauen & prüfen.** Nach deinem OK baut der Agent das Video, rendert ein
    Kontaktbild aus Einzelbildern und prüft Lesbarkeit, Bewegung und Branding,
    bevor er „fertig“ meldet.
 
@@ -72,6 +76,8 @@ es direkt mit dem Prompt los.
 - Claude Code oder Codex
 - Node.js 22+, ffmpeg, git (der Skill prüft das und hilft beim Installieren)
 - Optional: Higgsfield-Konto mit Credits; Python für Transkription (Longform → Short)
+- Optional für Bilder über ChatGPT: ChatGPT Plus/Pro/Business/Enterprise und die
+  Codex CLI (`npm i -g @openai/codex`, dann `codex login` mit ChatGPT)
 
 ## Aufbau
 
@@ -85,6 +91,7 @@ skills/motion-studio/
 │   └── troubleshooting.md        Was tun, wenn's klemmt
 └── scripts/
     ├── check_env.sh              Voraussetzungen als Tabelle
+    ├── codex_image.sh            Bild über ChatGPT-Abo (Codex, gpt-image-2)
     ├── preview_frames.sh         Kontaktbild zur Selbstprüfung
     └── transcribe.py             Transkript mit Wortzeiten (faster-whisper)
 ```
@@ -94,6 +101,8 @@ skills/motion-studio/
 - **Remotion** ist kostenlos für Einzelpersonen und Firmen bis 3 Mitarbeitende,
   größere Firmen brauchen eine Lizenz.
 - **Higgsfield** kostet Credits; der Skill fragt vor jeder Generierung.
+- **Bilder über ChatGPT/Codex** verbrauchen dein ChatGPT-Kontingent (nicht im
+  Free-Plan verfügbar). Der Skill zeigt vorher, welche Bilder er erzeugen will.
 - **Affiliate-Link:** Wer noch kein Higgsfield-Konto hat, bekommt im Setup einen
   Anmeldelink ([higgsfield.ai](https://higgsfield.ai?fpr=gerald-721ddc)). Das ist
   ein Affiliate-Link: Schließt du darüber ein Abo ab, bekomme ich eine Provision,
@@ -103,7 +112,8 @@ skills/motion-studio/
 
 Motion Studio is a Claude Code skill (also usable in Codex) that sets up
 code-based video creation (HyperFrames, Remotion or Tesseract, plus optional
-Higgsfield for images, clips, voices and music), interviews you to write a
+Higgsfield for images, clips, voices and music, or image generation through
+your ChatGPT subscription via Codex / gpt-image-2), interviews you to write a
 goal-driven video prompt, and self-checks the rendered video via a frame contact
 sheet before reporting it done. Install with
 `claude plugin marketplace add Geraldki94/claude_skill_motion` or

@@ -47,3 +47,15 @@ auf dem gesprochenen Wort sitzen.“
 Oft fehlen Schriften/Assets beim Rendern oder eine Animation startet zu spät.
 Im Projekt-Preview die betroffene Zeitmarke (steht oben links im Kontaktbild)
 ansehen und gezielt diese Szene korrigieren.
+
+**`codex_image.sh` meldet „nicht mit einem ChatGPT-Account angemeldet“ (Exit 4).**
+`codex login` ausführen und **Sign in with ChatGPT** wählen. Ohne Browser:
+`codex login --device-auth`. Steht bei `codex login status` „API key“, läuft
+Codex über API-Kosten: abmelden (`codex logout`) und mit ChatGPT neu anmelden.
+
+**`codex_image.sh` meldet „Kein Bild entstanden“ (Exit 5).**
+- Free-Plan: Bilderzeugung in Codex gibt es erst ab ChatGPT Plus.
+- Kontingent aufgebraucht: später erneut versuchen oder Higgsfield nutzen.
+- „The built-in image tool is not exposed in this session“: Codex aktualisieren
+  (`npm i -g @openai/codex@latest`) und `codex features enable image_generation`.
+- Codex-Ausgabe oberhalb der Meldung lesen, dort steht meist der eigentliche Grund.

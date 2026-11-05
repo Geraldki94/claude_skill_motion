@@ -1,6 +1,6 @@
 ---
 name: motion-studio
-description: Richtet alles ein, um mit Claude Code (oder Codex) Motion-Graphics-Videos per Code zu bauen, und führt danach durch ein kurzes Interview zu einem starken Video-Prompt. Prüft Node, ffmpeg und git per Skript, installiert auf Wunsch HyperFrames, Remotion oder Tesseract, verbindet optional Higgsfield (Bilder, Clips, Stimmen, Musik) und prüft fertige Videos anhand gerenderter Einzelbilder. Nutze den Skill, sobald jemand „Motion Studio“ oder „Motion Skill“ sagt, den Link zu diesem Repo schickt, mit Claude Erklärvideos, Werbespots, Shorts oder Motion Graphics machen will, ein Longform-Video in Shorts schneiden möchte oder HyperFrames, Remotion, Tesseract oder Higgsfield einrichten will. Also use it in English for setting up or making code-based AI videos.
+description: Richtet alles ein, um mit Claude Code (oder Codex) Motion-Graphics-Videos per Code zu bauen, und führt danach durch ein kurzes Interview zu einem starken Video-Prompt. Prüft Node, ffmpeg und git per Skript, installiert auf Wunsch HyperFrames, Remotion oder Tesseract, erzeugt Bilder über das ChatGPT-Abo (Codex, gpt-image-2) oder Higgsfield, verbindet optional Higgsfield für Clips, Stimmen und Musik und prüft fertige Videos anhand gerenderter Einzelbilder. Nutze den Skill, sobald jemand „Motion Studio“ oder „Motion Skill“ sagt, den Link zu diesem Repo schickt, mit Claude Erklärvideos, Werbespots, Shorts oder Motion Graphics machen will, ein Longform-Video in Shorts schneiden möchte oder HyperFrames, Remotion, Tesseract oder Higgsfield einrichten oder Bilder mit ChatGPT/Codex erzeugen will. Also use it in English for setting up or making code-based AI videos.
 license: MIT
 ---
 
@@ -29,13 +29,14 @@ Pfade zu Skripten unten sind relativ zum Ordner dieser SKILL.md.
 ## Gespeicherte Einstellungen
 
 Prüfe zuerst `~/.motion-studio.json`. Existiert sie: in einer Zeile zeigen, was
-drinsteht (Framework, Higgsfield, Stimme), fragen, ob das noch stimmt, und zu
+drinsteht (Framework, Higgsfield, Bildquelle, Stimme), fragen, ob das noch stimmt, und zu
 Teil 2 springen. Sonst mit Teil 1 beginnen.
 
 ```json
 {
   "framework": "hyperframes",
   "higgsfield": "cli",
+  "images": "codex",
   "voice": "",
   "language": "de",
   "setup_done": "2026-11-05"
@@ -43,7 +44,8 @@ Teil 2 springen. Sonst mit Teil 1 beginnen.
 ```
 
 `framework`: `hyperframes` | `remotion` | `tesseract` | `none` ·
-`higgsfield`: `cli` | `mcp` | `no`
+`higgsfield`: `cli` | `mcp` | `no` ·
+`images`: `codex` | `higgsfield` | `own`
 
 ## Teil 1: Einrichten
 
@@ -57,8 +59,11 @@ Details, Befehle und Sonderfälle: [references/setup.md](references/setup.md).
 3. **Higgsfield fragen:** Bilder, Clips, Stimmen, Musik, Soundeffekte generieren?
    Sind in der Sitzung schon Higgsfield-MCP-Werkzeuge verfügbar (Namen mit
    `Higgsfield`), ist nichts zu installieren: nur Guthaben prüfen.
-4. **Einstellungen speichern** in `~/.motion-studio.json`.
-5. **Neustart-Hinweis:** Neu installierte Skills/Plugins sieht der Agent erst in
+4. **Bildquelle fragen:** ChatGPT über Codex (nutzt das ChatGPT-Abo, keine
+   Credits), Higgsfield oder nur eigene Bilder. Bei Codex: installiert und mit
+   ChatGPT angemeldet? (Details in setup.md, Abschnitt 4.)
+5. **Einstellungen speichern** in `~/.motion-studio.json`.
+6. **Neustart-Hinweis:** Neu installierte Skills/Plugins sieht der Agent erst in
    einer neuen Sitzung. Wurde etwas installiert: kurz zusammenfassen und sagen
    „Starte eine neue Sitzung und schreib dort ‚Motion Studio‘.“ Sonst direkt weiter.
 
@@ -82,6 +87,17 @@ Ziel kennen, als wenn man jeden Schritt diktiert.
 3. **Vor Kosten:** zeigen, was generiert wird und was es ungefähr kostet
    (`higgsfield generate cost …` bzw. Kosten-/Quote-Werkzeug des MCP), auf Ja warten.
 4. Prompt ausführen, als käme er gerade vom Nutzer, mit dem gewählten Framework.
+   **Bilder** je nach `images`:
+   - `codex` in Claude Code:
+     `bash scripts/codex_image.sh --prompt "<Bildbeschreibung>" --out <projekt>/assets/<name>.png --aspect 16:9`
+     (optional `--ref logo.png` für Stil/Branding, `--transparent` für Freisteller).
+     Ein Bild pro Aufruf, 30–120 s. Vorher die Liste der geplanten Bilder zeigen
+     und fragen, weil jedes Bild ChatGPT-Kontingent verbraucht.
+   - `codex` in Codex selbst: eingebautes `$imagegen` nutzen, Datei nach `assets/`.
+   - `higgsfield`: wie gehabt, Kosten vorher zeigen.
+   - `own`: nur Dateien aus `assets/`.
+   Schlägt `codex_image.sh` fehl (Exit 4/5), Grund nennen und anbieten, auf
+   Higgsfield oder eigene Bilder auszuweichen.
 5. **Selbst prüfen, bevor du „fertig“ sagst:**
    `bash scripts/preview_frames.sh <video.mp4>` erzeugt ein Kontaktbild
    (`<video>_contact.png`) mit Einzelbildern über die ganze Länge. Ansehen und

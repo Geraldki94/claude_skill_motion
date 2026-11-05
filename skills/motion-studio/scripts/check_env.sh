@@ -69,4 +69,14 @@ else
   row higgsfield "nicht installiert (optional)" "-" "optional: Bilder, Clips, Stimmen, Musik"
 fi
 
+if command -v codex >/dev/null 2>&1; then
+  if codex login status 2>&1 | grep -qi chatgpt; then
+    row codex "ok, mit ChatGPT angemeldet" "$(ver codex --version | awk '{print $2}')" "optional: Bilder über ChatGPT-Abo"
+  else
+    row codex "installiert, nicht mit ChatGPT angemeldet" "$(ver codex --version | awk '{print $2}')" "optional: Bilder über ChatGPT-Abo (codex login)"
+  fi
+else
+  row codex "nicht installiert (optional)" "-" "optional: Bilder über ChatGPT-Abo"
+fi
+
 exit $missing

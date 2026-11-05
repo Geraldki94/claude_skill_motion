@@ -139,13 +139,44 @@ einen `assets/`-Ordner im Projekt legen, oder freie Sounds und Musik von Seiten
 wie Pixabay herunterladen. Selbst berechnete Sounds aus Code klingen künstlich,
 eine Sprecherstimme gibt es ohne Stimmen-Dienst nicht.
 
-## 4. Speichern und abschließen
+## 4. Bildquelle wählen
+
+Frage: „Womit sollen Bilder für deine Videos erzeugt werden?“ Biete nur an, was
+sinnvoll ist:
+
+| Option | Wann |
+|---|---|
+| **ChatGPT über Codex (Empfohlen, wenn ChatGPT Plus oder höher)** | Nutzt das bestehende ChatGPT-Abo (gpt-image-2). Keine Credits, kein API-Key. Verbraucht ChatGPT-Kontingent. |
+| **Higgsfield** | Nur wenn in Abschnitt 3 verbunden. Mehr Bildmodelle, kostet Credits, Kosten vorher sichtbar. |
+| **Nur eigene Bilder** | Logos, Screenshots, Fotos in `assets/`. |
+
+Higgsfield bleibt unabhängig davon für Clips, Stimmen, Musik und SFX zuständig.
+ChatGPT/Codex erzeugt nur Bilder.
+
+**Bei ChatGPT über Codex:**
+
+1. Prüfen: `codex --version` und `codex login status`. Die Ausgabe muss
+   „ChatGPT“ enthalten (bei „API key“ läuft es über API-Kosten statt übers Abo).
+2. Fehlt Codex (nach Rückfrage): `npm i -g @openai/codex`
+3. Nicht angemeldet: `codex login` und im Browser **Sign in with ChatGPT** wählen.
+   Läuft der Agent ohne Browser: `codex login --device-auth` und den Code im
+   Browser eingeben.
+4. Free-Plan? Dann gibt es in Codex keine Bilderzeugung: auf Higgsfield oder
+   eigene Bilder ausweichen.
+5. Optionaler Test (kostet ein Bild Kontingent, vorher fragen):
+   `bash scripts/codex_image.sh --prompt "Ein rotes Papierflugzeug auf weißem Grund" --out /tmp/motion-test.png`
+
+**In Codex selbst** ist kein Skript nötig: Dort direkt das eingebaute Werkzeug
+`$imagegen` nutzen und das Bild in `assets/` speichern.
+
+## 5. Speichern und abschließen
 
 `~/.motion-studio.json` schreiben (Format in SKILL.md). Dann in wenigen Zeilen:
 
 - welche Voraussetzungen da sind und was fehlt
 - welches Framework installiert wurde und wie
 - ob Higgsfield verbunden ist und wie viel Guthaben da ist
+- womit Bilder erzeugt werden (ChatGPT über Codex, Higgsfield oder eigene)
 
 Wenn Skills oder Plugins installiert wurden: „Starte eine neue Sitzung (in Claude
 Code `/exit` und neu starten, oder ein neues Chatfenster) und schreib dort ‚Motion
