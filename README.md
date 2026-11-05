@@ -12,6 +12,8 @@ bevor er es dir zeigt.
 https://github.com/Geraldki94/claude_skill_motion
 ```
 
+> **Neu hier?** Die [Schritt-für-Schritt-Anleitung](ANLEITUNG.md) erklärt alles von der Installation bis zum fertigen Video.
+
 ## Installation
 
 **Claude Code (als Plugin):**
@@ -83,6 +85,7 @@ es direkt mit dem Prompt los.
 
 ```
 .claude-plugin/                   Plugin- und Marketplace-Manifest
+ANLEITUNG.md                      Schritt-für-Schritt-Anleitung
 skills/motion-studio/
 ├── SKILL.md                      Ablauf in drei Teilen
 ├── references/
