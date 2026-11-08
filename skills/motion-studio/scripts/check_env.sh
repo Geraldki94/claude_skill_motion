@@ -79,4 +79,10 @@ else
   row codex "nicht installiert (optional)" "-" "optional: Bilder über ChatGPT-Abo"
 fi
 
+if [ -n "${FISH_API_KEY:-}" ]; then
+  row fish-audio "Key gesetzt" "-" "optional: Sprecherstimme (fish_tts.sh)"
+else
+  row fish-audio "kein Key (optional)" "-" "optional: Sprecherstimme, FISH_API_KEY setzen"
+fi
+
 exit $missing

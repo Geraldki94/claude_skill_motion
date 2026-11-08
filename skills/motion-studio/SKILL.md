@@ -1,6 +1,6 @@
 ---
 name: motion-studio
-description: Richtet alles ein, um mit Claude Code (oder Codex) Motion-Graphics-Videos per Code zu bauen, und führt danach durch ein kurzes Interview zu einem starken Video-Prompt. Prüft Node, ffmpeg und git per Skript, installiert auf Wunsch HyperFrames, Remotion oder Tesseract, erzeugt Bilder über das ChatGPT-Abo (Codex, gpt-image-2) oder Higgsfield, verbindet optional Higgsfield für Clips, Stimmen und Musik und prüft fertige Videos anhand gerenderter Einzelbilder. Nutze den Skill, sobald jemand „Motion Studio“ oder „Motion Skill“ sagt, den Link zu diesem Repo schickt, mit Claude Erklärvideos, Werbespots, Shorts oder Motion Graphics machen will, ein Longform-Video in Shorts schneiden möchte oder HyperFrames, Remotion, Tesseract oder Higgsfield einrichten oder Bilder mit ChatGPT/Codex erzeugen will. Also use it in English for setting up or making code-based AI videos.
+description: Richtet alles ein, um mit Claude Code (oder Codex) Motion-Graphics-Videos per Code zu bauen, und führt danach durch ein kurzes Interview zu einem starken Video-Prompt. Prüft Node, ffmpeg und git per Skript, installiert auf Wunsch HyperFrames, Remotion oder Tesseract, erzeugt Bilder über das ChatGPT-Abo (Codex, gpt-image-2) oder Higgsfield, erzeugt Sprecherstimmen über Fish Audio oder Higgsfield, verbindet optional Higgsfield für Clips und Musik und prüft fertige Videos anhand gerenderter Einzelbilder. Nutze den Skill, sobald jemand „Motion Studio“ oder „Motion Skill“ sagt, den Link zu diesem Repo schickt, mit Claude Erklärvideos, Werbespots, Shorts oder Motion Graphics machen will, ein Longform-Video in Shorts schneiden möchte oder HyperFrames, Remotion, Tesseract oder Higgsfield einrichten Bilder mit ChatGPT/Codex oder Stimmen mit Fish Audio erzeugen will. Also use it in English for setting up or making code-based AI videos.
 license: MIT
 ---
 
@@ -37,7 +37,8 @@ Teil 2 springen. Sonst mit Teil 1 beginnen.
   "framework": "hyperframes",
   "higgsfield": "cli",
   "images": "codex",
-  "voice": "",
+  "voice": "fish",
+  "voice_id": "",
   "language": "de",
   "setup_done": "2026-11-05"
 }
@@ -45,7 +46,8 @@ Teil 2 springen. Sonst mit Teil 1 beginnen.
 
 `framework`: `hyperframes` | `remotion` | `tesseract` | `none` ·
 `higgsfield`: `cli` | `mcp` | `no` ·
-`images`: `codex` | `higgsfield` | `own`
+`images`: `codex` | `higgsfield` | `own` ·
+`voice`: `fish` | `higgsfield` | `own` | `none` (`voice_id`: optionale Fish-Audio-Stimme)
 
 ## Teil 1: Einrichten
 
@@ -62,8 +64,11 @@ Details, Befehle und Sonderfälle: [references/setup.md](references/setup.md).
 4. **Bildquelle fragen:** ChatGPT über Codex (nutzt das ChatGPT-Abo, keine
    Credits), Higgsfield oder nur eigene Bilder. Bei Codex: installiert und mit
    ChatGPT angemeldet? (Details in setup.md, Abschnitt 4.)
-5. **Einstellungen speichern** in `~/.motion-studio.json`.
-6. **Neustart-Hinweis:** Neu installierte Skills/Plugins sieht der Agent erst in
+5. **Stimme fragen:** Fish Audio (eigener API-Key, günstig, auch eigene geklonte
+   Stimme), Higgsfield, selbst einsprechen oder ohne Stimme. Details in setup.md,
+   Abschnitt 5.
+6. **Einstellungen speichern** in `~/.motion-studio.json`.
+7. **Neustart-Hinweis:** Neu installierte Skills/Plugins sieht der Agent erst in
    einer neuen Sitzung. Wurde etwas installiert: kurz zusammenfassen und sagen
    „Starte eine neue Sitzung und schreib dort ‚Motion Studio‘.“ Sonst direkt weiter.
 
@@ -98,6 +103,12 @@ Ziel kennen, als wenn man jeden Schritt diktiert.
    - `own`: nur Dateien aus `assets/`.
    Schlägt `codex_image.sh` fehl (Exit 4/5), Grund nennen und anbieten, auf
    Higgsfield oder eigene Bilder auszuweichen.
+   **Stimme** je nach `voice`: Sprechertext zuerst zeigen und abnicken lassen, dann
+   - `fish`: `bash scripts/fish_tts.sh --file sprechertext.txt --out <projekt>/assets/voice.mp3 [--voice <voice_id>]`
+   - `higgsfield`: wie gehabt, Kosten vorher zeigen.
+   - `own`: Aufnahme der Person nach `assets/` legen lassen.
+   Danach Sprechpausen messen (`ffmpeg -af silencedetect`) und die Szenen auf die
+   Sätze legen.
 5. **Selbst prüfen, bevor du „fertig“ sagst:**
    `bash scripts/preview_frames.sh <video.mp4>` erzeugt ein Kontaktbild
    (`<video>_contact.png`) mit Einzelbildern über die ganze Länge. Ansehen und

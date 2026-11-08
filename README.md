@@ -64,6 +64,8 @@ Danach eine neue Sitzung starten und „Motion Studio“ schreiben.
    der Skill Bilder über Codex mit deinem ChatGPT-Abo (gpt-image-2) – ohne
    API-Key und ohne Higgsfield-Credits. Funktioniert in Codex direkt und in
    Claude Code über das Skript `codex_image.sh`.
+   **Stimme über Fish Audio (optional):** Mit eigenem API-Key erzeugt der Skill
+   Sprecherstimmen über Fish Audio (`fish_tts.sh`), auch mit deiner geklonten Stimme.
 4. **Prompt bauen.** Kurzes Interview: Thema, Ziel, Länge, Format, Branding,
    Referenz, Ton und – am wichtigsten – woran du erkennst, dass das Video gut ist.
 5. **Bauen & prüfen.** Nach deinem OK baut der Agent das Video, rendert ein
@@ -78,6 +80,7 @@ es direkt mit dem Prompt los.
 - Claude Code oder Codex
 - Node.js 22+, ffmpeg, git (der Skill prüft das und hilft beim Installieren)
 - Optional: Higgsfield-Konto mit Credits; Python für Transkription (Longform → Short)
+- Optional für Stimmen: Fish-Audio-API-Key (als `FISH_API_KEY`, nie im Repo speichern)
 - Optional für Bilder über ChatGPT: ChatGPT Plus/Pro/Business/Enterprise und die
   Codex CLI (`npm i -g @openai/codex`, dann `codex login` mit ChatGPT)
 
@@ -95,6 +98,7 @@ skills/motion-studio/
 └── scripts/
     ├── check_env.sh              Voraussetzungen als Tabelle
     ├── codex_image.sh            Bild über ChatGPT-Abo (Codex, gpt-image-2)
+    ├── fish_tts.sh               Sprecherstimme über Fish Audio
     ├── preview_frames.sh         Kontaktbild zur Selbstprüfung
     └── transcribe.py             Transkript mit Wortzeiten (faster-whisper)
 ```

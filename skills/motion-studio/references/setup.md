@@ -169,7 +169,36 @@ ChatGPT/Codex erzeugt nur Bilder.
 **In Codex selbst** ist kein Skript nötig: Dort direkt das eingebaute Werkzeug
 `$imagegen` nutzen und das Bild in `assets/` speichern.
 
-## 5. Speichern und abschließen
+## 5. Stimme wählen
+
+Frage: „Soll das Video eine Sprecherstimme haben – und woher?“
+
+| Option | Wann |
+|---|---|
+| **Fish Audio (Empfohlen, wenn ein Key da ist)** | Eigener API-Key, günstig, viele Sprachen; eigene geklonte Stimme möglich. |
+| **Higgsfield** | Wenn verbunden: ElevenLabs-Stimmen, Kosten vorher sichtbar. |
+| **Selbst einsprechen** | Person nimmt den Sprechertext auf und legt die Datei in `assets/`. Am persönlichsten. |
+| **Ohne Stimme** | Text im Bild trägt das Video, Musik darunter. |
+
+**Bei Fish Audio:**
+
+1. Key auf fish.audio unter **API Keys** erstellen.
+2. Key als Umgebungsvariable setzen, **nie** in Dateien, Projekte oder Repos schreiben:
+   `export FISH_API_KEY=...` (dauerhaft z. B. in `~/.bashrc` / `~/.zshrc`).
+   In einer Claude-Cloud-Umgebung den Key stattdessen als Netzwerk-Secret für
+   `api.fish.audio` hinterlegen und `FISH_API_KEY=proxy-injected` setzen.
+3. Test (nach Rückfrage, verbraucht etwas Kontingent):
+   `bash scripts/fish_tts.sh --text "Hallo, das ist ein Test." --out /tmp/fish-test.mp3`
+4. Optional eine bestimmte Stimme: `--voice <reference_id>` (die ID steht auf der
+   Stimmen-Seite bei fish.audio). Am besten die eigene geklonte Stimme oder eine
+   neutrale Stimme. **Keine Stimmen, die reale Personen imitieren** (Prominente,
+   Politiker, historische Figuren): rechtlich heikel und für Werbung tabu.
+   Die ID als `voice_id` in `~/.motion-studio.json` speichern.
+
+Der Key gehört der Person. Wurde er versehentlich in einen Chat oder eine Datei
+kopiert: bei fish.audio löschen und neu erzeugen.
+
+## 6. Speichern und abschließen
 
 `~/.motion-studio.json` schreiben (Format in SKILL.md). Dann in wenigen Zeilen:
 
@@ -177,6 +206,7 @@ ChatGPT/Codex erzeugt nur Bilder.
 - welches Framework installiert wurde und wie
 - ob Higgsfield verbunden ist und wie viel Guthaben da ist
 - womit Bilder erzeugt werden (ChatGPT über Codex, Higgsfield oder eigene)
+- woher die Stimme kommt (Fish Audio, Higgsfield, selbst eingesprochen, keine)
 
 Wenn Skills oder Plugins installiert wurden: „Starte eine neue Sitzung (in Claude
 Code `/exit` und neu starten, oder ein neues Chatfenster) und schreib dort ‚Motion

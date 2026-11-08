@@ -71,3 +71,16 @@ werden muss (Umgebung → Edit → Network access → Allowed domains):
   `<script src="assets/gsap.min.js">`).
 `codex login --device-auth` funktioniert ohne Browser auf der Maschine: Link und
 Code werden angezeigt, die Anmeldung passiert auf dem eigenen Gerät.
+
+**`fish_tts.sh` meldet „FISH_API_KEY fehlt“ (Exit 3).**
+Key bei fish.audio unter API Keys erstellen und `export FISH_API_KEY=...` setzen
+(neues Terminal oder `source ~/.bashrc`). In der Claude-Cloud: Key als Netzwerk-Secret
+für `api.fish.audio` hinterlegen und `FISH_API_KEY=proxy-injected` setzen.
+
+**`fish_tts.sh` meldet HTTP 401/402/429 (Exit 4).**
+401/403: Key falsch oder gelöscht. 402: Kontingent aufgebraucht (anderes Modell mit
+`--model` oder aufladen). 429: kurz warten. Die Meldung von Fish Audio steht darüber.
+
+**Fish-Audio-Stimme spricht ein Wort falsch aus.**
+Wie bei anderen Stimmen: das Wort lautmalerisch schreiben (z. B. „opticoreconsulting
+punkt at“) und nur diesen Satz neu erzeugen.

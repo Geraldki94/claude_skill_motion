@@ -26,6 +26,7 @@ nur die Entscheidungen.
 | **Node.js 22+**, **ffmpeg**, **git** | ja | Videos rendern und schneiden. Der Skill prüft das und hilft beim Installieren. |
 | **ChatGPT Plus** (oder höher) + **Codex CLI** | optional | Bilder über dein ChatGPT-Abo erzeugen |
 | **Higgsfield-Konto** | optional | Videoclips, Stimmen, Musik, Soundeffekte (kostet Credits) |
+| **Fish-Audio-API-Key** | optional | Sprecherstimme, auch deine eigene geklonte Stimme |
 | **Python** | optional | Nur, um lange Videos in Shorts zu schneiden |
 
 Ohne die optionalen Teile funktioniert der Skill auch: Dann nutzt du eigene
@@ -128,6 +129,24 @@ Vor dem Erzeugen zeigt Claude dir die Liste der geplanten Bilder und fragt nach.
 
 > Im **Free-Plan** von ChatGPT gibt es keine Bilderzeugung in Codex.
 
+### Stimme über Fish Audio einrichten
+
+1. Auf **fish.audio** anmelden, unter **API Keys** einen Key erstellen.
+2. Im Terminal (dauerhaft in `~/.bashrc` bzw. `~/.zshrc` eintragen):
+
+```bash
+export FISH_API_KEY=dein-key
+```
+
+3. Bei der Einrichtung „Fish Audio“ als Stimme wählen. Claude zeigt dir den
+   Sprechertext immer, bevor eine Stimme erzeugt wird.
+
+> **Den Key nie in Chats, Dateien oder GitHub posten.** Ist das passiert: bei
+> fish.audio löschen und neu erstellen.
+
+> Nutze deine eigene geklonte Stimme oder eine neutrale Stimme, **keine Stimmen,
+> die echte Personen imitieren**.
+
 ### Eigene Bilder nutzen
 
 Leg Logos, Fotos, Screenshots oder Musik in den Ordner `assets/` deines
@@ -223,6 +242,7 @@ claude_skill_motion/
     └── scripts/
         ├── check_env.sh          Prüft Node, ffmpeg, git, Python, Higgsfield, Codex
         ├── codex_image.sh        Erzeugt Bilder über dein ChatGPT-Abo (Codex)
+        ├── fish_tts.sh           Erzeugt die Sprecherstimme über Fish Audio
         ├── preview_frames.sh     Übersichtsbild zur Selbstprüfung des Videos
         └── transcribe.py         Transkript mit Wortzeiten für Shorts
 ```
@@ -235,6 +255,7 @@ claude_skill_motion/
 | **troubleshooting.md** | Was tun bei Fehlern (siehe unten) |
 | **check_env.sh** | Zeigt eine Tabelle: was da ist, was fehlt, wofür |
 | **codex_image.sh** | Ein Bild pro Aufruf über ChatGPT/Codex, mit Seitenverhältnis, Referenzbild, Freisteller |
+| **fish_tts.sh** | Sprechertext → MP3 über Fish Audio, optional mit eigener Stimme |
 | **preview_frames.sh** | 12 Einzelbilder mit Zeitstempel auf einem Bild, damit Claude Fehler findet |
 | **transcribe.py** | Wandelt Sprache im Video in Text mit genauen Zeiten um |
 

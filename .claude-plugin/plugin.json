@@ -1,6 +1,6 @@
 {
   "name": "motion-studio",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Motion-Graphics-Videos per Code mit Claude: Setup (HyperFrames, Remotion, Tesseract, Higgsfield, ChatGPT-Bilder via Codex), Prompt-Interview und Selbstprüfung.",
   "author": { "name": "Geraldki94" },
   "homepage": "https://github.com/Geraldki94/claude_skill_motion",
